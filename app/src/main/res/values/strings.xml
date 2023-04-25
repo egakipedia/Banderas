@@ -6,4 +6,6 @@
     <string name="iv_bandera">Bandera</string>
     <string name="btn_comprobar">Comprobar</string>
     <string name="tv1">¿De qué país es la bandera?</string>
+    <string name="tv_respuesta">respuesta</string>
+    <string name="tv_index">indice</string>
 </resources>
