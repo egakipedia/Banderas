@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">Banderas</string>
+    <string name="opcion1">opcion</string>
+    <string name="opcion2">opcion</string>
+    <string name="opcion3">opcion</string>
+    <string name="iv_bandera">Bandera</string>
+    <string name="btn_comprobar">Comprobar</string>
+    <string name="tv1">¿De qué país es la bandera?</string>
+</resources>
