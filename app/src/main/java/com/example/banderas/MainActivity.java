@@ -4,7 +4,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
-import android.media.Image;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
@@ -18,7 +17,7 @@ public class MainActivity extends AppCompatActivity {
 
     private ImageView img_bandera;
     private RadioButton rb1, rb2, rb3;
-    private TextView respuesta;
+    private TextView respuesta, puntos;
 
     @SuppressLint("MissingInflatedId")
     @Override
@@ -31,6 +30,17 @@ public class MainActivity extends AppCompatActivity {
         rb2 = findViewById(R.id.rb_2);
         rb3 = findViewById(R.id.rb_3);
         respuesta = findViewById(R.id.tv_respuesta);
+        puntos = findViewById(R.id.tv_puntos);
+
+        int puntosInt = getIntent().getIntExtra("npuntos", 0);
+
+        if(puntosInt==0){
+            puntos.setText("0");
+        }else{
+            String valor = String.valueOf(puntosInt);
+            puntos.setText(valor);
+        }
+
 
         ArrayList<String> europa_nombre = new ArrayList<String>();
 
@@ -87,13 +97,15 @@ public class MainActivity extends AppCompatActivity {
         }else{
             numero = (int) (Math.random() * size);
         }
-
         return numero;
     }
 
     public void Comprobar(View view){
 
         String correcta = respuesta.getText().toString();
+        String scoreString = puntos.getText().toString();
+        int scoreInt = 0;
+
         String seleccion = "";
 
         if(rb1.isChecked() == true){
@@ -109,7 +121,10 @@ public class MainActivity extends AppCompatActivity {
 
         if(correcta.equals(seleccion)){
             Toast.makeText(this, "Respuesta Correcta", Toast.LENGTH_SHORT).show();
+            scoreInt = Integer.parseInt(scoreString);
+            scoreInt+=2;
             Intent next = new Intent(this, MainActivity.class);
+            next.putExtra("npuntos", scoreInt);
             startActivity(next);
         }else{
             Toast.makeText(this, "NO!!! Prueba otra vez..", Toast.LENGTH_SHORT).show();
