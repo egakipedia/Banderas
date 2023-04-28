@@ -17,7 +17,7 @@ public class MainActivity extends AppCompatActivity {
 
     private ImageView img_bandera;
     private RadioButton rb1, rb2, rb3;
-    private TextView respuesta, puntos;
+    private TextView respuesta, puntos, vidas;
 
     @SuppressLint("MissingInflatedId")
     @Override
@@ -31,6 +31,7 @@ public class MainActivity extends AppCompatActivity {
         rb3 = findViewById(R.id.rb_3);
         respuesta = findViewById(R.id.tv_respuesta);
         puntos = findViewById(R.id.tv_puntos);
+        vidas = findViewById(R.id.tv_vidas);
 
         int puntosInt = getIntent().getIntExtra("npuntos", 0);
 
@@ -40,6 +41,11 @@ public class MainActivity extends AppCompatActivity {
             String valor = String.valueOf(puntosInt);
             puntos.setText(valor);
         }
+
+        int vidasInt = getIntent().getIntExtra("npuntos", 3);
+
+        String vidasString = Integer.toString(vidasInt);
+        vidas.setText(vidasString);
 
 
         ArrayList<String> europa_nombre = new ArrayList<String>();
@@ -118,6 +124,8 @@ public class MainActivity extends AppCompatActivity {
             seleccion = rb3.getText().toString();
         }
 
+        String vidasString = vidas.getText().toString();
+        int vidasInt = Integer.parseInt(vidasString);
 
         if(correcta.equals(seleccion)){
             Toast.makeText(this, "Respuesta Correcta", Toast.LENGTH_SHORT).show();
@@ -125,9 +133,13 @@ public class MainActivity extends AppCompatActivity {
             scoreInt+=2;
             Intent next = new Intent(this, MainActivity.class);
             next.putExtra("npuntos", scoreInt);
+            next.putExtra("nvidas", vidasInt);
             startActivity(next);
         }else{
             Toast.makeText(this, "NO!!! Prueba otra vez..", Toast.LENGTH_SHORT).show();
+            vidasInt-=1;
+            vidasString = Integer.toString(vidasInt) ;
+            vidas.setText(vidasString);
         }
     }
 }

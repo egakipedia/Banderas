@@ -13,4 +13,5 @@
     <string name="img_aleatoria">portada</string>
     <string name="txt_puntos">Puntos:</string>
     <string name="tv_puntos">0</string>
+    <string name="tv_vidas">3</string>
 </resources>
