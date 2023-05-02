@@ -15,7 +15,7 @@ import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 
-    private ImageView img_bandera;
+    private ImageView img_bandera, img_vidas;
     private RadioButton rb1, rb2, rb3;
     private TextView respuesta, puntos, vidas;
 
@@ -26,6 +26,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         img_bandera = findViewById(R.id.iv_bandera);
+        img_vidas = findViewById(R.id.iv_vidas);
         rb1 = findViewById(R.id.rb_1);
         rb2 = findViewById(R.id.rb_2);
         rb3 = findViewById(R.id.rb_3);
@@ -42,10 +43,20 @@ public class MainActivity extends AppCompatActivity {
             puntos.setText(valor);
         }
 
-        int vidasInt = getIntent().getIntExtra("npuntos", 3);
+        int vidasInt = getIntent().getIntExtra("nvidas", 3);
 
         String vidasString = Integer.toString(vidasInt);
         vidas.setText(vidasString);
+
+        if(vidasInt == 3){
+            img_vidas.setImageResource(R.drawable.vidastres);
+        }
+        if(vidasInt == 2){
+            img_vidas.setImageResource(R.drawable.vidasdos);
+        }
+        if(vidasInt == 1){
+            img_vidas.setImageResource(R.drawable.vidasuna);
+        }
 
 
         ArrayList<String> europa_nombre = new ArrayList<String>();
@@ -140,6 +151,16 @@ public class MainActivity extends AppCompatActivity {
             vidasInt-=1;
             vidasString = Integer.toString(vidasInt) ;
             vidas.setText(vidasString);
+
+            if(vidasInt == 3){
+                img_vidas.setImageResource(R.drawable.vidastres);
+            }
+            if(vidasInt == 2){
+                img_vidas.setImageResource(R.drawable.vidasdos);
+            }
+            if(vidasInt == 1){
+                img_vidas.setImageResource(R.drawable.vidasuna);
+            }
         }
     }
 }
